@@ -1,45 +1,30 @@
-import chalk from 'chalk';
-import { createLogger, format, transports } from "winston";
+import { createLogger, format, transports } from 'winston';
 
-const customFormat = format.printf(({ timestamp, level, message }) => {
-    let colorizedLevel;
+const consoleFormat = format.combine(
+  format.colorize(), 
+  format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+  format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)
+);
 
-    switch (level) {
-        case "error":
-          colorizedLevel = chalk.red(level.toUpperCase());
-          break;
-        case "warn":
-          colorizedLevel = chalk.yellow(level.toUpperCase());
-          break;
-        case "info":
-          colorizedLevel = chalk.green(level.toUpperCase());
-          break;
-        case "debug":
-          colorizedLevel = chalk.blue(level.toUpperCase());
-          break;
-        default:
-          colorizedLevel = level.toUpperCase();
-    }
-  
-    return `${chalk.gray(`[${timestamp}]`)} ${colorizedLevel}: ${message}`;
-})
+const fileFormat = format.combine(
+  format.uncolorize(), 
+  format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+  format.prettyPrint({ depth: 5 }),
+  format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)
+);
 
 const logger = createLogger({
-    level: "info",
-    format: format.combine(
-        format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-        customFormat
-      ),
-      transports: [
-        new transports.Console({
-          format: format.colorize(),
-        }),
-        new transports.File({
-          filename: "bot.log",
-          level: "info",
-          format: format.json(),
-        }),
-      ],
-})
+  level: 'info',
+  transports: [
+    new transports.Console({
+      format: consoleFormat,
+    }),
+    new transports.File({
+      filename: 'bot.log',
+      level: 'info',
+      format: fileFormat,
+    }),
+  ],
+});
 
 export default logger;
