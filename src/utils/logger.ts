@@ -21,7 +21,7 @@ const logger = createLogger({
     }),
     new transports.File({
       filename: 'bot.log',
-      level: 'info',
+      level: 'error',
       format: fileFormat,
     }),
   ],

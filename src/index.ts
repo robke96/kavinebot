@@ -14,5 +14,4 @@ client.once("ready", () => {
     await connectMongoDB(process.env.MONGO_URI as string);
 })();
 
-
 client.login(botConfig.token);
