@@ -4,7 +4,7 @@ const userSchema = new Schema({
     userId: { type: Schema.Types.String, required: true },
     userName: { type: Schema.Types.String, required: true },
     userAvatar: { type: Schema.Types.String, required: true },
-    verifiedAt: { type: Schema.Types.Number, required: true, default: null },
+    verifiedAt: { type: Schema.Types.Number, default: null },
     lastActivityAt: { type: Schema.Types.Number, default: null },
 
     // Asmens Duomenys - Dating sistemai
