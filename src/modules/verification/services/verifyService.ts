@@ -1,7 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, Guild, ModalBuilder, PermissionFlagsBits, TextInputBuilder, TextInputStyle, type AnyComponentBuilder, type GuildMember, type ModalActionRowComponent, type ModalActionRowComponentBuilder } from "discord.js";
-import createTemplateCard from "../cards/staticCardTemplate";
-import { UserModel } from "../database/models/userModel";
-import { botConfig } from "../config/botConfig";
+import createTemplateCard from "../../../shared/components/cards/staticCardTemplate";
+import { UserModel } from "../../../database/models/userModel";
+import { botConfig } from "../../../config/botConfig";
 
 export const createVerificationCard = async (member: GuildMember) => {
     let memberIcon = member.user.displayAvatarURL({ forceStatic: true, extension: 'png' }) as string;
@@ -49,29 +49,6 @@ export const createVerificationChannel = async (guild: Guild, member: GuildMembe
     });
 };
 
-export const createVerificationButtons = () => {
-    const buttonRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
-        new ButtonBuilder()
-        .setCustomId('_1')
-        .setEmoji('1126456509308608573')
-        .setStyle(ButtonStyle.Secondary)
-        .setDisabled(true)
-        ).addComponents(
-        new ButtonBuilder()
-        .setCustomId('registracijaButton')
-        .setLabel('PRISIJUNK')
-        .setStyle(ButtonStyle.Success)
-        ).addComponents(
-        new ButtonBuilder()
-        .setCustomId('_3')
-        .setEmoji('1126456509308608573')
-        .setStyle(ButtonStyle.Secondary)
-        .setDisabled(true)
-    )
-
-    return buttonRow;
-}
-
 export const generateMathQuestion = () => {
     const generateNumber = (maxNum: number) => Math.floor(Math.random() * maxNum + 1);
     const num1 = generateNumber(20);
@@ -82,22 +59,3 @@ export const generateMathQuestion = () => {
     return { mathQuestion, mathAnswer }; 
 };
 
-export const createVerificationModal = (mathQuestion: string, mathAnswer: number) => {
-    const modal = new ModalBuilder()
-        .setCustomId(`mathInput/${mathAnswer}`)
-        .setTitle("REGISTRACIJA");
-
-    const questionInput = new TextInputBuilder()
-        .setCustomId(`mathInput/${mathAnswer}`)
-        .setLabel(`Išpreskite uždavinį: ${mathQuestion}`)
-        .setPlaceholder('Įrašykite atsakymą')
-        .setStyle(TextInputStyle.Short)
-        .setMaxLength(2)
-        .setMinLength(1)
-        .setRequired(true);
-
-    const row = new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(questionInput);
-    modal.addComponents(row);
-
-    return modal;
-};

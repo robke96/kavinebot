@@ -1,6 +1,6 @@
+import createTemplateCard from '../components/cards/staticCardTemplate';
+import { type SlashCommandT } from './../../core/client';
 import { SlashCommandBuilder } from "discord.js";
-import type { SlashCommandT } from "../core/client";
-import { createVerifyCard } from "../services/verificationService";
 
 const command: SlashCommandT = {
     command: new SlashCommandBuilder()
@@ -8,8 +8,9 @@ const command: SlashCommandT = {
     .setDescription('test register card'),
     async execute(interaction) {
         const serverIcon = interaction.guild?.iconURL({ extension: 'png' }) as string;
+        const card = await createTemplateCard(serverIcon, "Labas NICKNAME", "Registracija");
 
-
+        interaction.reply({ files: [card], ephemeral: true })
     }
 }
 

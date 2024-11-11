@@ -1,12 +1,13 @@
 import { ActionRowBuilder, Events, ModalBuilder, TextInputBuilder, TextInputComponent, TextInputStyle, UserFlagsBitField, type Interaction, type ModalActionRowComponentBuilder } from "discord.js";
-import type { Event } from "../../core/handlers/eventHandler";
-import { botConfig } from "../../config/botConfig";
-import type DiscordClient from "../../core/client";
-import logger from "../../utils/logger";
-import { createVerificationModal, generateMathQuestion } from "../../services/verificationService";
-import { UserModel } from "../../database/models/userModel";
+import { botConfig } from "../../../config/botConfig";
+import type DiscordClient from "../../../core/client";
+import { UserModel } from "../../../database/models/userModel";
+import logger from "../../../shared/utils/logger";
+import { generateMathQuestion } from "../services/verifyService";
+import { createVerificationModal } from "../components/modals";
+import type { EventI } from "../../../shared/types/event";
 
-const event: Event = {
+const event: EventI = {
     name: Events.InteractionCreate,
     isEnabled: botConfig.verificationSystem,
     async execute(client: DiscordClient, interaction: Interaction) {

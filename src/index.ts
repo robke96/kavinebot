@@ -1,5 +1,5 @@
 import { botConfig } from "./config/botConfig";
-import logger from "./utils/logger";
+import logger from "./shared/utils/logger";
 import DiscordClient from "./core/client";
 import { connectMongoDB } from "./database/mongoConnection";
 

@@ -16,12 +16,14 @@ const createTemplateCard = async (serverIcon: string, whiteText: string, blueTex
     // White text - name 
     let whiteTextFontSize = 72;
     let whiteTextY = 25;
+    
     if (whiteText.length >= 16) {
         whiteTextFontSize = 48;
         whiteTextY = 20
     }
 
-    const width = (400 / 10) * whiteText.length 
+    // const width = (400 / 10) * whiteText.length 
+    const width = whiteText.length * whiteTextFontSize * 0.6;
     
     const svg = `<svg width="${135 * blueText.length}" height="380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/2000/svg">
      <!-- Grey rounded bg -->

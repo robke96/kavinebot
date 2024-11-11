@@ -5,10 +5,23 @@ export const botConfig = {
 
 // Category ID's
     registerCategoryId: "1126446173369143296",
+    tavoPokalbiaiCategoryId: "1128400129498558520",
+    informacijaCategoryId: "1128400366443167885",
+    pagrindinisKavineCategoryId: "1128399673435115580",
+    voiceKanalaiCategoryId: "1167553171472797767",
+    forumCinemasCategoryId: "1305209278033825854",
+    administracijaCategoryId: "1124982810562793472",
 // Roles ID's
     narysRoleId: "1126446265186668564",
+// Channels ID's
+    profilisChannelId: "1128404322045136998",
+    bendrasChannelId: "1305206971464683541",
+    naujokamsChannelId: "1124323472873635890",
+    naujienosChannelId: "1305200306648518656",
+    adminLogsChannelId: "1125348589531574302",
 
-// Turn on-off systems..
+// Turn off-on systems individually
     slashCommands: true,
     verificationSystem: true,
+    loadingCardsSystem: true,
 }

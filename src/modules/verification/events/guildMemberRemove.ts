@@ -1,10 +1,11 @@
+import { type EventI } from '../../../shared/types/event';
 import { ChannelType, Events, GuildMember } from "discord.js";
-import type { Event } from "../../core/handlers/eventHandler";
-import { botConfig } from "../../config/botConfig";
-import type DiscordClient from "../../core/client";
-import { UserModel } from "../../database/models/userModel";
+import type DiscordClient from "../../../core/client";
+import { botConfig } from "../../../config/botConfig";
+import { UserModel } from "../../../database/models/userModel";
 
-const event: Event = {
+
+const event: EventI = {
     name: Events.GuildMemberRemove,
     isEnabled: botConfig.verificationSystem,
     async execute(client: DiscordClient, member: GuildMember) {
